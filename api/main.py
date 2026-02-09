@@ -17,6 +17,12 @@ def get_db():
 
 # ---------- USERS ----------
 
+@app.post("/login")
+def login(name: str):
+    token = secrets.token_hex(16)
+    return {"token": token, "user_id": 1}
+
+
 @app.post("/users")
 def create_user(name: str, db: Session = Depends(get_db)):
     user = User(name=name)
